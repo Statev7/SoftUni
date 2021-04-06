@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class P03_DepositCalculator {
     public static void main(String[] args) {
 
-        final int numberOfMonths = 12;
+        final int NUMBER_OF_MONTHS = 12;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -13,7 +13,7 @@ public class P03_DepositCalculator {
 
 
         Double accruedInterest = depositAmount * (interest / 100 );
-        Double interestPerMonth = accruedInterest / numberOfMonths;
+        Double interestPerMonth = accruedInterest / NUMBER_OF_MONTHS;
 
         Double finalResult = depositAmount + (month * interestPerMonth);
 

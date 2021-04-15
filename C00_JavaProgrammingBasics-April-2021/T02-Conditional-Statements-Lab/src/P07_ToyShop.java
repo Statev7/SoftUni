@@ -1,3 +1,4 @@
+import java.awt.event.TextEvent;
 import java.util.Scanner;
 
 public class P07_ToyShop {
@@ -29,16 +30,18 @@ public class P07_ToyShop {
 
         if (numberOfToys >= 50)
         {
-            sum -= sum * 0.25;
+            sum = sum - 0.25 * sum;
         }
 
-        sum -= (sum * 0.10) + excursion;
+        sum = sum - 0.10 * sum;
 
         if(sum >= excursion){
-            System.out.printf("Yes! %.2f lv left.", sum);
+            double leftMoney = sum - excursion;
+            System.out.printf("Yes! %.2f lv left.", leftMoney);
         }
         else{
-            System.out.printf("Not enough money! %.2f lv needed.", Math.abs(sum));
+            double needMoney = excursion - sum;
+            System.out.printf("Not enough money! %.2f lv needed.", needMoney);
         }
 
 

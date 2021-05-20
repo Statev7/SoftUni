@@ -1,4 +1,4 @@
-﻿namespace P010_MultiplicationTable
+﻿namespace P10_MultiplicationTable
 {
     using System;
 

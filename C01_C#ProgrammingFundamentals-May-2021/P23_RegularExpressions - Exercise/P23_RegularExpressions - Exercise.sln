@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01_Furniture", "P01_Furniture\P01_Furniture.csproj", "{6425360F-1833-4A8F-8AAA-FD537DD9E718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P01_Furniture", "P01_Furniture\P01_Furniture.csproj", "{6425360F-1833-4A8F-8AAA-FD537DD9E718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P02_Race", "P02_Race\P02_Race.csproj", "{DB4806BD-1999-4E77-BD6A-A30B6F1CA1A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P02_Race", "P02_Race\P02_Race.csproj", "{DB4806BD-1999-4E77-BD6A-A30B6F1CA1A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P03_SoftUniBarIncome", "P03_SoftUniBarIncome\P03_SoftUniBarIncome.csproj", "{29E25D3B-7415-4D06-81EF-91C861FCA4E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P03_SoftUniBarIncome", "P03_SoftUniBarIncome\P03_SoftUniBarIncome.csproj", "{29E25D3B-7415-4D06-81EF-91C861FCA4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P05_NetherRealms", "P05_NetherRealms\P05_NetherRealms.csproj", "{B2933CE7-5106-43BC-9BFC-4837C63E2074}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{29E25D3B-7415-4D06-81EF-91C861FCA4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29E25D3B-7415-4D06-81EF-91C861FCA4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29E25D3B-7415-4D06-81EF-91C861FCA4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2933CE7-5106-43BC-9BFC-4837C63E2074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2933CE7-5106-43BC-9BFC-4837C63E2074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2933CE7-5106-43BC-9BFC-4837C63E2074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2933CE7-5106-43BC-9BFC-4837C63E2074}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

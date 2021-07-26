@@ -1,0 +1,15 @@
+﻿@model List<TV>
+
+<div>
+    <a class="btn btn-outline-secondary" asp-controller="Television" asp-action="Create">Create</a>
+</div>
+<div class="m-3 w-25">
+    @foreach (var TV in Model)
+    {
+        <div>Марка: @TV.Name</div>
+        <div>Размер: @TV.Size</div>
+        <div>Цена: @TV.Price$</div>
+        <a class="btn btn-outline-danger" asp-controller="Television" asp-action="Delete">Delete</a>
+    }
+</div>
+

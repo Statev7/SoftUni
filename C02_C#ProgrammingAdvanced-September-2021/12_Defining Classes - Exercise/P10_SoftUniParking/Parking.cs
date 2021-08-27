@@ -17,16 +17,18 @@
         public Parking(int capacity)
         {
             cars = new List<Car>();
-            this.capacity = capacity;
+            this.Capacity = capacity;
         }
+
+        public int Capacity { private get; set; }
 
         public int Count => this.cars.Count;
 
         public string AddCar(Car car)
         {
             string result = string.Empty;
-            bool isCarAlredyExist = this.cars.Contains(car);
-            bool isCapacityIsFull = this.cars.Count == capacity;
+            bool isCarAlredyExist = cars.Any(x => x.RegistrationNumber == car.RegistrationNumber);
+            bool isCapacityIsFull = this.cars.Count >= this.Capacity;
 
             if (isCarAlredyExist)
             {
@@ -66,7 +68,7 @@
         {
             Car car = this.cars
                 .Where(x => x.RegistrationNumber == registrationNumber)
-                .SingleOrDefault();
+                .First();
 
             return car;
         }

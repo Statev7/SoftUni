@@ -12,8 +12,10 @@
             stack.Push(2);
             stack.Push(3);
 
-            Console.WriteLine(stack.Peak());
-            Console.WriteLine(stack.Count);
+            foreach (var item in stack)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

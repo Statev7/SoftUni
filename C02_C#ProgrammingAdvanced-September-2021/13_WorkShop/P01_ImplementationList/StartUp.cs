@@ -13,10 +13,10 @@
             myList.Add(2);
             myList.Add(1);
 
-            myList.Clear();
-
-            
-            Console.WriteLine(myList.Count);
+            foreach (var item in myList)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

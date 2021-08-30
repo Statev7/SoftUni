@@ -1,8 +1,11 @@
 ﻿namespace P01_ImplementationList
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class MyList<T>
+    public class MyList<T> : IEnumerable<T>
     {
         private T[] date;
         private int capacity;
@@ -171,6 +174,16 @@
             {
                 throw new Exception("Cannot swap a value with one that is the default");
             }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this.date.Take(this.Count).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

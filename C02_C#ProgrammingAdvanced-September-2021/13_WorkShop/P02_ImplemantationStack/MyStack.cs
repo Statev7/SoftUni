@@ -1,8 +1,11 @@
 ﻿namespace P02_ImplemantationStack
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class MyStack<T>
+    public class MyStack<T> : IEnumerable<T>
     {
         private T[] date;
         private int capacity;
@@ -55,6 +58,14 @@
             this.Count = 0;
         }
 
+        public void ForEach(Action<T> filter)
+        {
+            for (int i = this.Count - 1; i >= 0; i--)
+            {
+                filter(this.date[i]);
+            }
+        }
+
         private void Resize()
         {
             var newDate = new T[capacity * 2];
@@ -76,5 +87,14 @@
             }
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this.date.Take(this.Count).Reverse().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
     }
 }

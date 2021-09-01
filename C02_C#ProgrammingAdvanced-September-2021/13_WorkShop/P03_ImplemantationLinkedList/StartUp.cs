@@ -9,15 +9,11 @@
             MyLinkedList<int> linkedList = new MyLinkedList<int>();
 
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 3; i++)
             {
                 linkedList.AddFirst(i);
             }
 
-            for (int i = 0; i < 5; i++)
-            {
-                linkedList.RemoveLast();
-            }
 
             foreach (var item in linkedList)
             {

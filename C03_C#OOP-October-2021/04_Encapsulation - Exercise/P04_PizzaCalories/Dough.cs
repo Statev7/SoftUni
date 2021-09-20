@@ -18,7 +18,6 @@
             this.FlourType = flourType;
             this.bakingTechnique = bakingTechnique;
             this.Weight = weight;
-            this.CalculateCalories();
         }
 
         public string FlourType
@@ -75,9 +74,7 @@
             }
         }
 
-        public double Calories { get; private set; }
-
-        private void CalculateCalories()
+        public double CalculateCalories()
         {
             double totalCalories = 0;
 
@@ -85,7 +82,8 @@
             double techniqueGrams = Modifiers(this.BakingTechnique);
 
             totalCalories = (2 * this.Weight) * typeGrams * techniqueGrams;
-            this.Calories = totalCalories;
+
+            return totalCalories;
         }
 
         private double Modifiers(string type)

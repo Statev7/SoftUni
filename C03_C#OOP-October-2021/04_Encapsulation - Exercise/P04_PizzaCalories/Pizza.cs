@@ -62,10 +62,10 @@
 
             foreach (var topping in this.toppings)
             {
-                toppingsTotalCalories += topping.Calories;
+                toppingsTotalCalories += topping.CalculateCalories();
             }
 
-            double totalCalories = this.Dough.Calories + toppingsTotalCalories;
+            double totalCalories = this.Dough.CalculateCalories() + toppingsTotalCalories;
             return totalCalories;
         }
 

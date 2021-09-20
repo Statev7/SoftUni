@@ -17,7 +17,6 @@
         {
             this.Type = type;
             this.Weight = weight;
-            this.CalculateCalories();
         }
 
         public string Type
@@ -56,16 +55,14 @@
             }
         }
 
-        public double Calories { get; private set; }
-
-        private void CalculateCalories()
+        public double CalculateCalories()
         {
             double totalCalories = 0;
 
             double typeGrams = this.Modifiers(this.Type);
             totalCalories = (2 * this.Weight) * typeGrams;
 
-            this.Calories = totalCalories;
+            return totalCalories;
         }
 
         private double Modifiers(string type)

@@ -5,8 +5,10 @@
     public class Product
     {
         private const string NAME_ERROR_MESSAGE = "Name cannot be empty";
+        private const string MONEY_ERROR_MESSAGE = "Money cannot be negative";
 
         private string name;
+        private double cost;
 
         public Product(string name, double cost)
         {
@@ -31,7 +33,22 @@
             }
         }
 
-        public double Cost { get; private set; }
+        public double Cost
+        {
+            get
+            {
+                return this.cost;
+            }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException(MONEY_ERROR_MESSAGE);
+                }
+
+                this.cost = value;
+            }
+        }
 
         public override string ToString()
         {

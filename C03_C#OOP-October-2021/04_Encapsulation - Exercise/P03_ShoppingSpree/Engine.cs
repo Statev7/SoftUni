@@ -19,16 +19,23 @@
 
         public void Run()
         {
-            string[] peopleArg = Console.ReadLine()
-                .Split(new[] { "=", ";" }, StringSplitOptions.RemoveEmptyEntries);
+            try
+            {
+                string[] peopleArg = Console.ReadLine()
+                .Split(new[] { "=", ";" }, StringSplitOptions.None);
 
-            string[] productArg = Console.ReadLine()
-                .Split(new[] { "=", ";" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] productArg = Console.ReadLine()
+                    .Split(new[] { "=", ";" }, StringSplitOptions.None);
 
-            CreatePerson(peopleArg);
-            CreateProduct(productArg);
-            ExecuteCommands();
-            PrintOutput();
+                this.CreatePerson(peopleArg);
+                this.CreateProduct(productArg);
+                this.ExecuteCommands();
+                this.PrintOutput();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void CreatePerson(string[] peopleArg)
@@ -38,16 +45,8 @@
                 string name = peopleArg[i];
                 double money = double.Parse(peopleArg[i + 1]);
 
-                Person person = null;
-                try
-                {
-                    person = new Person(name, money);
-                    this.people.Add(person);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                Person person = new Person(name, money);
+                this.people.Add(person);
             }
         }
 
@@ -57,16 +56,9 @@
             {
                 string name = productArg[i];
                 double price = double.Parse(productArg[i + 1]);
-                Product product = null;
-                try
-                {
-                    product = new Product(name, price);
-                    products.Add(product);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+
+                Product product = new Product(name, price);
+                products.Add(product);
             }
         }
 

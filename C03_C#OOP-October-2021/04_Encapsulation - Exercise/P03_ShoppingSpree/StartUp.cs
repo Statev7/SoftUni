@@ -1,11 +1,20 @@
 ﻿namespace ShoppingSpree
 {
+    using System;
+
     public class StartUp
     {
         public static void Main()
         {
-            Engine engine = new Engine();
-            engine.Run();
+            try
+            {
+                Engine engine = new Engine();
+                engine.Run();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

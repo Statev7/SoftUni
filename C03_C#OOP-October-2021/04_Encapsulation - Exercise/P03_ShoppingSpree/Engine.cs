@@ -19,16 +19,17 @@
 
         public void Run()
         {
+            string[] peopleArg = Console.ReadLine()
+                .Split(new[] { "=", ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+            string[] productArg = Console.ReadLine()
+                .Split(new[] { "=", ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+            this.CreatePerson(peopleArg);
+            this.CreateProduct(productArg);
+
             try
             {
-                string[] peopleArg = Console.ReadLine()
-                .Split(new[] { "=", ";" }, StringSplitOptions.None);
-
-                string[] productArg = Console.ReadLine()
-                    .Split(new[] { "=", ";" }, StringSplitOptions.None);
-
-                this.CreatePerson(peopleArg);
-                this.CreateProduct(productArg);
                 this.ExecuteCommands();
                 this.PrintOutput();
             }

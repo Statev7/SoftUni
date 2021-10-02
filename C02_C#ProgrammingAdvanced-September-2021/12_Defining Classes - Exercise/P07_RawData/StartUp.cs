@@ -52,7 +52,7 @@
                     Console.WriteLine(car);
                 }
             }
-            else if(filter == "flamable")
+            else if(filter == "flammable")
             {
                 foreach (var car in allCars
                     .Where(x => x.Cargo.Type == filter && x.Engine.EnginePower > 250))

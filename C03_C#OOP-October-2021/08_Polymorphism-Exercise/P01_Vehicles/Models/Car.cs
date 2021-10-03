@@ -1,7 +1,5 @@
 ﻿namespace Vehicles.Models
 {
-    using Vehicles.Common;
-
     public class Car : Vehicle
     {
         private const double AIR_CONSUMPTION = 0.9;

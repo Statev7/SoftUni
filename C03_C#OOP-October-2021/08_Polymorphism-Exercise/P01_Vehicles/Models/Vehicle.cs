@@ -33,7 +33,7 @@
 
         public override string ToString()
         {
-            return $"{this.GetType().Name}: {this.FuelConsumption:F2}";
+            return $"{this.GetType().Name}: {this.FuelQuantity:F2}";
         }
     }
 }

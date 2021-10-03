@@ -9,8 +9,8 @@
 
     public class Engine : IEngine
     {
-        private static Car car;
-        private static Truck truck;
+        private Vehicle car;
+        private Vehicle truck;
 
         private IReader reader;
         private IWriter writer;
@@ -39,7 +39,7 @@
             var quantity = double.Parse(carArgments[0]);
             var consumption = double.Parse(carArgments[1]);
 
-            car = new Car(quantity, consumption);
+            this.car = new Car(quantity, consumption);
         }
 
         private void CreateTruck()
@@ -52,7 +52,7 @@
             var quantity = double.Parse(truckArgments[0]);
             var consumption = double.Parse(truckArgments[1]);
 
-            truck = new Truck(quantity, consumption);
+            this.truck = new Truck(quantity, consumption);
         }
 
         private void ExecuteCommands()
@@ -66,12 +66,12 @@
 
                 var command = cmdArg[0];
                 var vehicleType = cmdArg[1];
-                var thirtArg = double.Parse(cmdArg[2]);
+                var arg = double.Parse(cmdArg[2]);
 
                 switch (command)
                 {
-                    case "Refuel": this.Refual(vehicleType, thirtArg); break;
-                    case "Drive": this.Drive(vehicleType, thirtArg); break;
+                    case "Refuel": this.Refual(vehicleType, arg); break;
+                    case "Drive": this.Drive(vehicleType, arg); break;
                 }
             }
         }
@@ -94,14 +94,13 @@
                 case "Car": msg = car.Drive(distance); break;
                 case "Truck": msg = truck.Drive(distance); break;
             }
-
             writer.WriteLine(msg);
         }
 
         private void PrintOutput()
         {
-            writer.WriteLine($"Car: {car.FuelQuantity:F2}");
-            writer.WriteLine($"Truck: {truck.FuelQuantity:F2}");
+            writer.WriteLine(car.ToString());
+            writer.WriteLine(truck.ToString());
         }
     }
 }

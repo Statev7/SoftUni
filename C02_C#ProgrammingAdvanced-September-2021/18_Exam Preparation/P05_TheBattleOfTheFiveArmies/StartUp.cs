@@ -1,185 +1,130 @@
 ﻿namespace P05_TheBattleOfTheFiveArmies
 {
     using System;
+    using System.Linq;
 
     public class StartUp
     {
+        private const string ARMY_WIN_A_WAR_MESSAGE = "The army managed to free the Middle World! Armor left: {0}";
+        private const string ARMY_LOST_A_WAR_MESSAGE = "The army was defeated at {0};{1}.";
+        private const char ARMY_CHARACTER = 'A';
+        private const char ORCS_CHARACTER = 'O';
+        private const char MORDOR_CHARACTER = 'M';
+        private const char DEAD_CHARACTER = 'X';
+        private const char EMPTY_CHARACTER = '-';
+
         public static void Main()
         {
-            int armor = int.Parse(Console.ReadLine());
-            int matrixSize = int.Parse(Console.ReadLine());
+            var armor = int.Parse(Console.ReadLine());
+            var rows = int.Parse(Console.ReadLine());
 
-            var army = new Army(armor);
-            var matrix = new char[matrixSize, matrixSize];
-            matrix = ReadMatrix(matrix);
-            StartPosition(matrix, army);
+            var matrix = new char[rows][];
+            ReadMatrix(matrix);
 
-            while (army.Armor > 0 && army.IsWarOver == false)
+            var armyRows = 0;
+            var armyCols = 0;
+
+            ArmyCords(matrix, ref armyRows, ref armyCols);
+
+            while (true)
             {
-                string[] arguments = Console.ReadLine()
-                .Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                var arg = Console.ReadLine()
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
 
-                string command = arguments[0];
-                int rowCord = int.Parse(arguments[1]);
-                int colCord = int.Parse(arguments[2]);
-                matrix[rowCord, colCord] = 'O';
+                var commad = arg[0];
+                var orcRows = int.Parse(arg[1]);
+                var orcCols = int.Parse(arg[2]);
 
-                switch (command)
+                matrix[orcRows][orcCols] = ORCS_CHARACTER;
+
+                armor--;
+                matrix[armyRows][armyCols] = EMPTY_CHARACTER;
+
+                Move(matrix, ref armyRows, ref armyCols, commad, rows);
+
+                if (matrix[armyRows][armyCols] == ORCS_CHARACTER)
                 {
-                    case "up": Up(matrix, army); break;
-                    case "down": Down(matrix, army); break;
-                    case "right": Right(matrix, army); break;
-                    case "left": Left(matrix, army); break;
+                    armor -= 2;
                 }
-            }
 
-            if (army.IsWarOver)
-            {
-                Console.WriteLine($"The army managed to free the Middle World! Armor left: {army.Armor}");
-                PrintMatrix(matrix);
-            }
-            else
-            {
-                Console.WriteLine($"The army was defeated at {army.Y};{army.X}.");
-                PrintMatrix(matrix);
-            }
-        }
-
-        private static void Up(char[,] matrix, Army army)
-        {
-            bool canMove = army.Y - 1 >= 0;
-            if (canMove)
-            {
-                army.Y -= 1;
-                Move(matrix, army);
-            }
-            else
-            {
-                army.Armor -= 1;
-            }
-        }
-
-        private static void Down(char[,] matrix, Army army)
-        {
-            bool canMove = army.Y + 1 < matrix.GetLength(0);
-            if (canMove)
-            {
-                army.Y += 1;
-                Move(matrix, army);
-            }
-            else
-            {
-                army.Armor -= 1;
-            }
-        }
-
-        private static void Right(char[,] matrix, Army army)
-        {
-            bool canMove = army.X + 1 < matrix.GetLength(1);
-            if (canMove)
-            {
-                army.X += 1;
-                Move(matrix, army);
-            }
-            else
-            {
-                army.Armor -= 1;
-            }
-        }
-
-        private static void Left(char[,] matrix, Army army)
-        {
-            bool canMove = army.X - 1 >= 0;
-            if (canMove)
-            {
-                army.X -= 1;
-                Move(matrix, army);
-            }
-            else
-            {
-                army.Armor -= 1;
-            }
-        }
-
-        private static void Move(char[,] matrix, Army army)
-        {
-            army.Armor -= 1;
-
-            if (matrix[army.Y, army.X] == 'O')
-            {
-                army.Armor -= 2;
-                if (army.Armor <= 0)
+                if (matrix[armyRows][armyCols] == MORDOR_CHARACTER)
                 {
-                    matrix[army.Y, army.X] = 'X';
+                    matrix[armyRows][armyCols] = EMPTY_CHARACTER;
+                    Console.WriteLine(string.Format(ARMY_WIN_A_WAR_MESSAGE, armor));
+                    break;
                 }
-                else
+
+                if (armor <= 0)
                 {
-                    matrix[army.Y, army.X] = '-';
+                    matrix[armyRows][armyCols] = DEAD_CHARACTER;
+                    Console.WriteLine(string.Format(ARMY_LOST_A_WAR_MESSAGE, armyRows, armyCols));
+                    break;
                 }
+
+                matrix[armyRows][armyCols] = ARMY_CHARACTER;
             }
-            else if (matrix[army.Y, army.X] == 'M')
+
+            PrintResult(matrix);
+        }
+
+        private static void ReadMatrix(char[][] matrix)
+        {
+            for (int row = 0; row < matrix.Length; row++)
             {
-                matrix[army.Y, army.X] = '-';
-                army.IsWarOver = true;
+                var rowDate = Console.ReadLine()
+                    .ToCharArray();
+
+                matrix[row] = rowDate;
             }
         }
 
-        private static void StartPosition(char[,] matrix, Army army)
+        private static void ArmyCords(char[][] matrix, ref int armyRow, ref int armyCol)
         {
-            for (int row = 0; row < matrix.GetLength(0); row++)
+            for (int row = 0; row < matrix.Length; row++)
             {
-                for (int col = 0; col < matrix.GetLength(1); col++)
+                for (int col = 0; col < matrix[row].Length; col++)
                 {
-                    if (matrix[row, col] == 'A')
+                    if (matrix[row][col] == ARMY_CHARACTER)
                     {
-                        army.Y = row;
-                        army.X = col;
-                        matrix[row, col] = '-';
+                        armyRow = row;
+                        armyCol = col;
                     }
                 }
             }
         }
 
-        private static char[,] ReadMatrix(char[,] matrix)
+        private static void Move(char[][] matrix, ref int armyRows, ref int armyCols, string commad, int rows)
         {
-            for (int row = 0; row < matrix.GetLength(0); row++)
+            if (commad == "up" && armyRows - 1 >= 0)
             {
-                var rowDate = Console.ReadLine().ToCharArray();
-                for (int col = 0; col < matrix.GetLength(1); col++)
-                {
-                    matrix[row, col] = rowDate[col];
-                }
+                armyRows--;
             }
-
-            return matrix;
+            else if (commad == "down" && armyRows + 1 < rows)
+            {
+                armyRows++;
+            }
+            else if (commad == "left" && armyCols - 1 >= 0)
+            {
+                armyCols--;
+            }
+            else if (commad == "right" && armyCols + 1 < matrix[armyRows].Length)
+            {
+                armyCols++;
+            }
         }
 
-        private static void PrintMatrix(char[,] matrix)
+        private static void PrintResult(char[][] matrix)
         {
-            for (int row = 0; row < matrix.GetLength(0); row++)
+            for (int row = 0; row < matrix.Length; row++)
             {
-                for (int col = 0; col < matrix.GetLength(1); col++)
+                for (int col = 0; col < matrix[row].Length; col++)
                 {
-                    Console.Write(matrix[row, col]);
+                    Console.Write(matrix[row][col]);
                 }
                 Console.WriteLine();
             }
         }
-    }
 
-    public class Army
-    {
-        public Army(int armor)
-        {
-            this.Armor = armor;
-        }
-        
-        public int Armor { get; set; }
-
-        public bool IsWarOver { get; set; }
-
-        public int X { get; set; }
-
-        public int Y { get; set; }
     }
 }

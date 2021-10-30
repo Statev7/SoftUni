@@ -16,7 +16,7 @@
         public Dough(string flourType, string bakingTechnique, double weight)
         {
             this.FlourType = flourType;
-            this.bakingTechnique = bakingTechnique;
+            this.BakingTechnique = bakingTechnique;
             this.Weight = weight;
         }
 

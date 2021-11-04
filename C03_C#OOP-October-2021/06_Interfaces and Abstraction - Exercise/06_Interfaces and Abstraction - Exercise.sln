@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P07_MilitaryElite", "P07_Mi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P08_CollectionHierarchy", "P08_CollectionHierarchy\P08_CollectionHierarchy.csproj", "{1B08D0D3-7706-4A27-8FEF-53471BF20609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P09_ExplicitInterfaces", "P09_ExplicitInterfaces\P09_ExplicitInterfaces.csproj", "{7359708A-C4D0-485C-92F6-34842FBC5CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P09_ExplicitInterfaces", "P09_ExplicitInterfaces\P09_ExplicitInterfaces.csproj", "{7359708A-C4D0-485C-92F6-34842FBC5CFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

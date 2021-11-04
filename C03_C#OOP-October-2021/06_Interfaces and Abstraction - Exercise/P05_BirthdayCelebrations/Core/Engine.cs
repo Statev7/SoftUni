@@ -15,7 +15,7 @@
 
         public Engine()
         {
-            citizens = new List<IBirthble>();
+            this.citizens = new List<IBirthble>();
         }
 
         public void Run()
@@ -69,9 +69,12 @@
 
         private void PrintOutput(string filter)
         {
-            foreach (var citizen in this.citizens.Where(x => x.BirthDate.EndsWith(filter)))
+            foreach (var citizen in this.citizens)
             {
-                Console.WriteLine(citizen.BirthDate);
+                if (citizen.BirthDate.EndsWith(filter))
+                {
+                    Console.WriteLine(citizen.BirthDate);
+                }
             }
         }
     }

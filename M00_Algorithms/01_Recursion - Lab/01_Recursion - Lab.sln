@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P04_GeneratingVectors", "P0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P05_GeneratingCombinations", "P05_GeneratingCombinations\P05_GeneratingCombinations.csproj", "{292D2380-3F52-4121-AC84-59257580E330}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P06_QueensPuzzle", "P06_QueensPuzzle\P06_QueensPuzzle.csproj", "{9EFA1F4F-BE0E-4400-9471-C52950C4B09D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P06_QueensPuzzle", "P06_QueensPuzzle\P06_QueensPuzzle.csproj", "{9EFA1F4F-BE0E-4400-9471-C52950C4B09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P07_Labyrinth", "P07_Labyrinth\P07_Labyrinth.csproj", "{7C256B24-C9CE-45DB-B6D8-1806AF3C5B59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9EFA1F4F-BE0E-4400-9471-C52950C4B09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EFA1F4F-BE0E-4400-9471-C52950C4B09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EFA1F4F-BE0E-4400-9471-C52950C4B09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C256B24-C9CE-45DB-B6D8-1806AF3C5B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C256B24-C9CE-45DB-B6D8-1806AF3C5B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C256B24-C9CE-45DB-B6D8-1806AF3C5B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C256B24-C9CE-45DB-B6D8-1806AF3C5B59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -34,10 +34,8 @@
 
         public virtual Town Town { get; set; }
 
-        [InverseProperty("HomeTeam")]
         public ICollection<Game> HomeGames { get; set; }
 
-        [InverseProperty("AwayTeam")]
         public ICollection<Game> AwayGames { get; set; }
 
         public ICollection<Player> Players { get; set; }

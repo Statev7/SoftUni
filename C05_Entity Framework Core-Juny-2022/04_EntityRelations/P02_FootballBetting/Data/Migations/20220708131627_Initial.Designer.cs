@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P03_FootballBetting.Data;
 
-namespace P03_FootballBetting.Data.Migrations
+namespace P03_FootballBetting.Data.Migations
 {
     [DbContext(typeof(FootballBettingContext))]
-    [Migration("20220706201124_Initial")]
+    [Migration("20220708131627_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,7 +96,7 @@ namespace P03_FootballBetting.Data.Migrations
                     b.Property<int>("AwayTeamGoals")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AwayTeamTeamId")
+                    b.Property<int>("AwayTeamId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTime")
@@ -111,7 +111,7 @@ namespace P03_FootballBetting.Data.Migrations
                     b.Property<int>("HomeTeamGoals")
                         .HasColumnType("int");
 
-                    b.Property<int?>("HomeTeamTeamId")
+                    b.Property<int>("HomeTeamId")
                         .HasColumnType("int");
 
                     b.Property<string>("Result")
@@ -119,9 +119,9 @@ namespace P03_FootballBetting.Data.Migrations
 
                     b.HasKey("GameId");
 
-                    b.HasIndex("AwayTeamTeamId");
+                    b.HasIndex("AwayTeamId");
 
-                    b.HasIndex("HomeTeamTeamId");
+                    b.HasIndex("HomeTeamId");
 
                     b.ToTable("Games");
                 });
@@ -215,10 +215,10 @@ namespace P03_FootballBetting.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PrimaryKitColorColorId")
+                    b.Property<int>("PrimaryKitColorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SecondaryKitColorColorId")
+                    b.Property<int>("SecondaryKitColorId")
                         .HasColumnType("int");
 
                     b.Property<int>("TownId")
@@ -226,9 +226,9 @@ namespace P03_FootballBetting.Data.Migrations
 
                     b.HasKey("TeamId");
 
-                    b.HasIndex("PrimaryKitColorColorId");
+                    b.HasIndex("PrimaryKitColorId");
 
-                    b.HasIndex("SecondaryKitColorColorId");
+                    b.HasIndex("SecondaryKitColorId");
 
                     b.HasIndex("TownId");
 
@@ -301,11 +301,15 @@ namespace P03_FootballBetting.Data.Migrations
                 {
                     b.HasOne("P03_FootballBetting.Data.Models.Team", "AwayTeam")
                         .WithMany("AwayGames")
-                        .HasForeignKey("AwayTeamTeamId");
+                        .HasForeignKey("AwayTeamId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("P03_FootballBetting.Data.Models.Team", "HomeTeam")
                         .WithMany("HomeGames")
-                        .HasForeignKey("HomeTeamTeamId");
+                        .HasForeignKey("HomeTeamId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("P03_FootballBetting.Data.Models.Player", b =>
@@ -342,11 +346,15 @@ namespace P03_FootballBetting.Data.Migrations
                 {
                     b.HasOne("P03_FootballBetting.Data.Models.Color", "PrimaryKitColor")
                         .WithMany("PrimaryKitTeams")
-                        .HasForeignKey("PrimaryKitColorColorId");
+                        .HasForeignKey("PrimaryKitColorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("P03_FootballBetting.Data.Models.Color", "SecondaryKitColor")
                         .WithMany("SecondaryKitTeams")
-                        .HasForeignKey("SecondaryKitColorColorId");
+                        .HasForeignKey("SecondaryKitColorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("P03_FootballBetting.Data.Models.Town", "Town")
                         .WithMany("Teams")

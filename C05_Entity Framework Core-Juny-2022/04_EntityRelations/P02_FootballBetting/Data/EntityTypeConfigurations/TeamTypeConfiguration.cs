@@ -13,6 +13,18 @@
                 .HasOne(t => t.Town)
                 .WithMany(to => to.Teams)
                 .HasForeignKey(t => t.TownId);
+
+            builder
+                .HasOne(t => t.PrimaryKitColor)
+                .WithMany(c => c.PrimaryKitTeams)
+                .HasForeignKey(t => t.PrimaryKitColorId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder
+                .HasOne(t => t.SecondaryKitColor)
+                .WithMany(c => c.SecondaryKitTeams)
+                .HasForeignKey(t => t.SecondaryKitColorId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

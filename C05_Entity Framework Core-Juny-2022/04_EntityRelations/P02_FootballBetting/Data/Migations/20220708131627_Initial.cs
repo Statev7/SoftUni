@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace P03_FootballBetting.Data.Migrations
+namespace P03_FootballBetting.Data.Migations
 {
     public partial class Initial : Migration
     {
@@ -93,25 +93,23 @@ namespace P03_FootballBetting.Data.Migrations
                     LogoUrl = table.Column<string>(nullable: true),
                     Initials = table.Column<string>(nullable: true),
                     Budget = table.Column<decimal>(nullable: false),
-                    PrimaryKitColorColorId = table.Column<int>(nullable: true),
-                    SecondaryKitColorColorId = table.Column<int>(nullable: true),
+                    PrimaryKitColorId = table.Column<int>(nullable: false),
+                    SecondaryKitColorId = table.Column<int>(nullable: false),
                     TownId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.TeamId);
                     table.ForeignKey(
-                        name: "FK_Teams_Colors_PrimaryKitColorColorId",
-                        column: x => x.PrimaryKitColorColorId,
+                        name: "FK_Teams_Colors_PrimaryKitColorId",
+                        column: x => x.PrimaryKitColorId,
                         principalTable: "Colors",
-                        principalColumn: "ColorId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ColorId");
                     table.ForeignKey(
-                        name: "FK_Teams_Colors_SecondaryKitColorColorId",
-                        column: x => x.SecondaryKitColorColorId,
+                        name: "FK_Teams_Colors_SecondaryKitColorId",
+                        column: x => x.SecondaryKitColorId,
                         principalTable: "Colors",
-                        principalColumn: "ColorId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ColorId");
                     table.ForeignKey(
                         name: "FK_Teams_Towns_TownId",
                         column: x => x.TownId,
@@ -126,8 +124,8 @@ namespace P03_FootballBetting.Data.Migrations
                 {
                     GameId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HomeTeamTeamId = table.Column<int>(nullable: true),
-                    AwayTeamTeamId = table.Column<int>(nullable: true),
+                    HomeTeamId = table.Column<int>(nullable: false),
+                    AwayTeamId = table.Column<int>(nullable: false),
                     HomeTeamGoals = table.Column<int>(nullable: false),
                     AwayTeamGoals = table.Column<int>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
@@ -140,17 +138,15 @@ namespace P03_FootballBetting.Data.Migrations
                 {
                     table.PrimaryKey("PK_Games", x => x.GameId);
                     table.ForeignKey(
-                        name: "FK_Games_Teams_AwayTeamTeamId",
-                        column: x => x.AwayTeamTeamId,
+                        name: "FK_Games_Teams_AwayTeamId",
+                        column: x => x.AwayTeamId,
                         principalTable: "Teams",
-                        principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "TeamId");
                     table.ForeignKey(
-                        name: "FK_Games_Teams_HomeTeamTeamId",
-                        column: x => x.HomeTeamTeamId,
+                        name: "FK_Games_Teams_HomeTeamId",
+                        column: x => x.HomeTeamId,
                         principalTable: "Teams",
-                        principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "TeamId");
                 });
 
             migrationBuilder.CreateTable(
@@ -249,14 +245,14 @@ namespace P03_FootballBetting.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Games_AwayTeamTeamId",
+                name: "IX_Games_AwayTeamId",
                 table: "Games",
-                column: "AwayTeamTeamId");
+                column: "AwayTeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Games_HomeTeamTeamId",
+                name: "IX_Games_HomeTeamId",
                 table: "Games",
-                column: "HomeTeamTeamId");
+                column: "HomeTeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_PositionId",
@@ -274,14 +270,14 @@ namespace P03_FootballBetting.Data.Migrations
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_PrimaryKitColorColorId",
+                name: "IX_Teams_PrimaryKitColorId",
                 table: "Teams",
-                column: "PrimaryKitColorColorId");
+                column: "PrimaryKitColorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_SecondaryKitColorColorId",
+                name: "IX_Teams_SecondaryKitColorId",
                 table: "Teams",
-                column: "SecondaryKitColorColorId");
+                column: "SecondaryKitColorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teams_TownId",

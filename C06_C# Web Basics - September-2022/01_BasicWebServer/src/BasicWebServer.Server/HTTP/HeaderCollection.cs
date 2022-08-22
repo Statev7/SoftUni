@@ -1,8 +1,9 @@
 ﻿namespace BasicWebServer.HTTP
 {
+    using System.Collections;
     using System.Collections.Generic;
 
-    public class HeaderCollection
+    public class HeaderCollection : IEnumerable<Header>
     {
         private readonly IDictionary<string, Header> headers;
 
@@ -13,5 +14,9 @@
 
         public void Add(string name, string value)
             => this.headers.Add(name, new Header(name, value));
+
+        public IEnumerator<Header> GetEnumerator() => this.headers.Values.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
     }
 }

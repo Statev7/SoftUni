@@ -57,11 +57,15 @@
                 NetworkStream networkStream = networkConnection.GetStream();
 
                 string requestAsString = await this.ReadRequestAsync(networkStream);
-
                 Request request = Request.Parse(requestAsString);
-                //Console.WriteLine(request);
 
                 Response response = this.routingTable.MatchRequest(request);
+
+                if (response.PreRenderAction != null)
+                {
+                    response.PreRenderAction(request, response);
+                }
+
                 await this.WriteResponseAsync(networkStream, response);
 
                 networkConnection.Close();

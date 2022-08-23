@@ -7,22 +7,40 @@
     using System.Threading.Tasks;
 
     using BasicWebServer.HTTP;
+    using BasicWebServer.Routing.Implementation;
 
     public class HTTPServer
     {
+        private const string DefualtIP = "127.0.0.1";
+        private const int DefualtPort = 8080;
         private const int BufferLength = 1024;
         private const int MaxReqquestSize = 10 * 1024;
 
         private readonly IPAddress ipAddress;
         private readonly int port;
         private readonly TcpListener tcpListener;
+        private readonly RoutingTable routingTable;
 
-        public HTTPServer(string ipAddress, int port)
+        public HTTPServer(string ipAddress, int port, Action<RoutingTable> routingTable)
         {
             this.ipAddress = IPAddress.Parse(ipAddress);
             this.port = port;
 
             this.tcpListener = new TcpListener(this.ipAddress, this.port);
+
+            routingTable(this.routingTable = new RoutingTable());
+        }
+
+        public HTTPServer(int port, Action<RoutingTable> routingTable)
+            :this(DefualtIP, port, routingTable)
+        {
+
+        }
+
+        public HTTPServer(Action<RoutingTable> routingTable)
+            :this(DefualtPort, routingTable)
+        {
+
         }
 
         public async Task Start()
@@ -39,26 +57,22 @@
                 NetworkStream networkStream = networkConnection.GetStream();
 
                 string requestAsString = await this.ReadRequestAsync(networkStream);
-                Console.WriteLine(requestAsString);
 
-                string content = "Hello from my cat web server!";
-                await this.WriteResponseAsync(networkStream, content);
+                Request request = Request.Parse(requestAsString);
+                //Console.WriteLine(request);
+
+                Response response = this.routingTable.MatchRequest(request);
+                await this.WriteResponseAsync(networkStream, response);
 
                 networkConnection.Close();
             }
         }
 
-        public async Task WriteResponseAsync(NetworkStream networkStream, string content)
+        public async Task WriteResponseAsync(NetworkStream networkStream, Response response)
         {
-            int contentLength = Encoding.UTF8.GetByteCount(content);
-
-            string responseAsString = @$"HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Content-Length: {contentLength}
-
-{content}";
-
+            string responseAsString = response.ToString();
             byte[] responseBytes = Encoding.UTF8.GetBytes(responseAsString);
+
             await networkStream.WriteAsync(responseBytes);
         }
 
@@ -84,8 +98,6 @@ Content-Length: {contentLength}
 
 
             } while (networkStream.DataAvailable);
-
-            //Request request = Request.Parse(stringBuilder.ToString());
 
             return stringBuilder.ToString();
         }

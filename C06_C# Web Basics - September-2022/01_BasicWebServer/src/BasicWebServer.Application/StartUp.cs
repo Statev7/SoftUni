@@ -10,6 +10,7 @@
     using System.Web;
 
     using BasicWebServer.HTTP;
+    using BasicWebServer.HTTP.Sessions;
     using BasicWebServer.Responses.ContentResponses;
 
     public class StartUp
@@ -38,7 +39,8 @@
                 .MapPost("/HTML", new HtmlResponse("", AddFormDataAction))
                 .MapGet("/Content", new HtmlResponse(DownloadForm))
                 .MapPost("/Content", new TextFileResponse(FileName))
-                .MapGet("/Cookies", new HtmlResponse("", AddCookiesAction)));
+                .MapGet("/Cookies", new HtmlResponse("", AddCookiesAction))
+                .MapGet("/Session", new TextResponse("", DisplaySessionInfoAction)));
             
             await server.Start();
         }
@@ -84,7 +86,7 @@
 
         private static void AddCookiesAction(Request request, Response response)
         {
-            bool requestHasCookies = request.Cookies.Any();
+            bool requestHasCookies = request.Cookies.Any(c => c.Name != Session.SessionCookieName);
             string bodyText = string.Empty;
 
             if (requestHasCookies)
@@ -117,6 +119,20 @@
                 response.Cookies.Add("My-Cat-Cookie", "My-Cat-Value");
             }
 
+            response.Body = bodyText;
+        }
+
+        private static void DisplaySessionInfoAction(Request request, Response response)
+        {
+            bool isSessionExist = request.Session.Contains(Session.SessionCurrentDateKey);
+            string bodyText = "Current date stored!";
+
+            if (isSessionExist)
+            {
+                bodyText = $"Stored data: {request.Session[Session.SessionCurrentDateKey]}";
+            }
+
+            response.Body = string.Empty;
             response.Body = bodyText;
         }
     }

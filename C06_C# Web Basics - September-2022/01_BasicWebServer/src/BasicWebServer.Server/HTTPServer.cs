@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using BasicWebServer.HTTP;
+    using BasicWebServer.HTTP.Sessions;
     using BasicWebServer.Routing.Implementation;
 
     public class HTTPServer
@@ -66,18 +67,12 @@
                     response.PreRenderAction(request, response);
                 }
 
+                AddSession(request, response);
+
                 await this.WriteResponseAsync(networkStream, response);
 
                 networkConnection.Close();
             }
-        }
-
-        public async Task WriteResponseAsync(NetworkStream networkStream, Response response)
-        {
-            string responseAsString = response.ToString();
-            byte[] responseBytes = Encoding.UTF8.GetBytes(responseAsString);
-
-            await networkStream.WriteAsync(responseBytes);
         }
 
         public async Task<string> ReadRequestAsync(NetworkStream networkStream)
@@ -104,6 +99,29 @@
             } while (networkStream.DataAvailable);
 
             return stringBuilder.ToString();
+        }
+
+        private void AddSession(Request request, Response response)
+        {
+            bool sessionExists = request.Session
+                .Contains(Session.SessionCurrentDateKey);
+
+            if (!sessionExists)
+            {
+                request.Session[Session.SessionCurrentDateKey]
+                    = DateTime.UtcNow.ToString();
+
+                response.Cookies
+                    .Add(Session.SessionCookieName, request.Session.Id);
+            }
+        }
+
+        public async Task WriteResponseAsync(NetworkStream networkStream, Response response)
+        {
+            string responseAsString = response.ToString();
+            byte[] responseBytes = Encoding.UTF8.GetBytes(responseAsString);
+
+            await networkStream.WriteAsync(responseBytes);
         }
     }
 }

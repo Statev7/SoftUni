@@ -7,10 +7,13 @@
 
     using BasicWebServer.HTTP.Cookies;
     using BasicWebServer.HTTP.Enums;
+    using BasicWebServer.HTTP.Sessions;
     using BasicWebServer.Responses.ContentResponses;
 
     public class Request
     {
+        private static IDictionary<string, Session> sessions = new Dictionary<string, Session>();
+
         public Request()
         {
             this.Form = new Dictionary<string, string>();
@@ -25,6 +28,8 @@
         public CookieCollection Cookies { get; private set; }
 
         public string Body { get; set; }
+
+        public Session Session { get; private set; }
 
         public IReadOnlyDictionary<string, string> Form { get; private set; }
 
@@ -41,6 +46,8 @@
 
             CookieCollection cookies = ParseCookies(headers);
 
+            Session session = GetSession(cookies);
+
             string[] bodyLines = lines.Skip(headers.Count + 2).ToArray();
             string body = string.Join("\r\n", bodyLines);
 
@@ -52,6 +59,7 @@
                 HTTPMethod = httpMethod,
                 Headers = headers,
                 Cookies = cookies,
+                Session = session,
                 Body = body,
                 Form = form
             };
@@ -119,6 +127,20 @@
             }
 
             return cookieCollection;
+        }
+
+        private static Session GetSession(CookieCollection cookies)
+        {
+            string sessionId = cookies.Contains(Session.SessionCookieName)
+                ? cookies[Session.SessionCookieName]
+                : Guid.NewGuid().ToString();
+
+            if (!sessions.ContainsKey(sessionId))
+            {
+                sessions[sessionId] = new Session(sessionId);
+            }
+
+            return sessions[sessionId];
         }
 
         private static Dictionary<string, string> ParseForm(HeaderCollection headers, string body)

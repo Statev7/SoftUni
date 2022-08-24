@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web;
 
+    using BasicWebServer.HTTP.Cookies;
     using BasicWebServer.HTTP.Enums;
     using BasicWebServer.Responses.ContentResponses;
 
@@ -15,11 +16,13 @@
             this.Form = new Dictionary<string, string>();
         }
 
-        public string Url { get; set; }
+        public string Url { get; private set; }
 
-        public HTTPMethod HTTPMethod { get; set; }
+        public HTTPMethod HTTPMethod { get; private set; }
 
-        public HeaderCollection Headers { get; set; }
+        public HeaderCollection Headers { get; private set; }
+
+        public CookieCollection Cookies { get; private set; }
 
         public string Body { get; set; }
 
@@ -36,6 +39,8 @@
 
             HeaderCollection headers = ParseHeaders(lines.Skip(1));
 
+            CookieCollection cookies = ParseCookies(headers);
+
             string[] bodyLines = lines.Skip(headers.Count + 2).ToArray();
             string body = string.Join("\r\n", bodyLines);
 
@@ -46,6 +51,7 @@
                 Url = url,
                 HTTPMethod = httpMethod,
                 Headers = headers,
+                Cookies = cookies,
                 Body = body,
                 Form = form
             };
@@ -89,6 +95,30 @@
             }
 
             return headerCollection;
+        }
+
+        private static CookieCollection ParseCookies(HeaderCollection headers)
+        {
+            CookieCollection cookieCollection = new CookieCollection();
+
+            if (headers.Contains(Header.Cookie))
+            {
+                string cookieHeader = headers[Header.Cookie];
+
+                string[] allCookies = cookieHeader.Split(';');
+
+                foreach (var cookieText in allCookies)
+                {
+                    string[] cookieParts = cookieText.Split('=');
+
+                    string cookieName = cookieParts[0].Trim();
+                    string cookieValue = cookieParts[1].Trim(); 
+
+                    cookieCollection.Add(cookieName, cookieValue);
+                }
+            }
+
+            return cookieCollection;
         }
 
         private static Dictionary<string, string> ParseForm(HeaderCollection headers, string body)

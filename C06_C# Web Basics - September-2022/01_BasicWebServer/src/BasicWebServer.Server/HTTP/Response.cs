@@ -3,6 +3,7 @@
     using System;
     using System.Text;
 
+    using BasicWebServer.HTTP.Cookies;
     using BasicWebServer.HTTP.Enums;
 
     public class Response
@@ -10,6 +11,7 @@
         private Response()
         {
             this.Headers = new HeaderCollection();
+            this.Cookies = new CookieCollection();
         }
 
         public Response(StatusCode statusCode)
@@ -25,6 +27,8 @@
 
         public HeaderCollection Headers { get; }
 
+        public CookieCollection Cookies { get; set; }
+
         public string Body { get; set; }
 
         public Action<Request, Response> PreRenderAction { get; set; }
@@ -38,6 +42,11 @@
             foreach (var header in this.Headers)
             {
                 sb.AppendLine($"{header}");
+            }
+
+            foreach (var cookie in this.Cookies)
+            {
+                sb.AppendLine($"{Header.SetCookie}: {cookie}");
             }
 
             sb.AppendLine(string.Empty);

@@ -8,6 +8,7 @@
     {
         public const string SessionCookieName = "MyWebServerSID";
         public const string SessionCurrentDateKey = "CurrentDate";
+        public const string SessionUserKey = "AuthenticatedUserId";
 
         private readonly IDictionary<string, string> date;
 
@@ -34,5 +35,8 @@
 
         public bool Contains(string key)
             => this.date.ContainsKey(key);
+
+        public void Clear()
+            => this.date.Clear();
     }
 }

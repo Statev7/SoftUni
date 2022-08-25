@@ -28,6 +28,16 @@
 
         private const string FileName = "content.txt";
 
+        private const string LoginForm = @"<form action='/Login' method='POST'>
+            Username: <input type='text' name='Username'/>
+            Password: <input type='text' name='Password'/>
+            <input type='submit' value ='Log In' /> 
+            </form>";
+
+        private const string Username = "user";
+        private const string Password = "user123";
+
+
         public async static Task Main()
         {
             await DownloadSitesAsTextFile(FileName, 
@@ -40,7 +50,11 @@
                 .MapGet("/Content", new HtmlResponse(DownloadForm))
                 .MapPost("/Content", new TextFileResponse(FileName))
                 .MapGet("/Cookies", new HtmlResponse("", AddCookiesAction))
-                .MapGet("/Session", new TextResponse("", DisplaySessionInfoAction)));
+                .MapGet("/Session", new TextResponse("", DisplaySessionInfoAction))
+                .MapGet("/Login", new HtmlResponse(LoginForm))
+                .MapPost("/Login", new HtmlResponse("", LoginAction))
+                .MapGet("/Logout", new HtmlResponse("", LogoutAction))
+                .MapGet("/UserProfile", new HtmlResponse("", GetDataAction)));
             
             await server.Start();
         }
@@ -119,7 +133,7 @@
                 response.Cookies.Add("My-Cat-Cookie", "My-Cat-Value");
             }
 
-            response.Body = bodyText;
+            response.Body += bodyText;
         }
 
         private static void DisplaySessionInfoAction(Request request, Response response)
@@ -133,7 +147,50 @@
             }
 
             response.Body = string.Empty;
-            response.Body = bodyText;
+            response.Body += bodyText;
+        }
+
+        public static void LoginAction(Request request, Response response)
+        {
+            request.Session.Clear();
+
+            string bodyText = LoginForm;
+
+            bool isUsernameMatches = request.Form["Username"] == Username;
+            bool isPasswordMatches = request.Form["Password"] == Password;
+
+            if (isUsernameMatches && isPasswordMatches)
+            {
+                request.Session[Session.SessionUserKey] = "MyUserId";
+                response.Cookies.Add(Session.SessionCookieName, request.Session.Id);
+
+                bodyText = "<h3>Logged successfully</h3>";
+            }
+
+            response.Body = String.Empty;
+            response.Body += bodyText;
+        }
+
+        public static void LogoutAction(Request request, Response response)
+        {
+            request.Session.Clear();
+
+            response.Body = String.Empty;
+            response.Body += "<h3>Logged out successfully!</h3>";
+        }
+
+        public static void GetDataAction(Request request, Response response)
+        {
+            string bodyText = "<h3>You should first log in - <a href=\"http://localhost:8080/Login\">Login</h3>";
+
+            bool isAuthenticated = request.Session.Contains(Session.SessionUserKey);
+            if (isAuthenticated)
+            {
+                bodyText = $"<h3>Currently logged-in user is with username '{Username}'</h3>"; 
+            }
+
+            response.Body = String.Empty;
+            response.Body += bodyText;
         }
     }
 }

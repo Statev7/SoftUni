@@ -11,11 +11,11 @@
 
     public class RoutingTable : IRoutingTable
     {
-        private readonly IDictionary<HTTPMethod, Dictionary<string, Response>> routes;
+        private readonly IDictionary<HTTPMethod, Dictionary<string, Func<Request, Response>>> routes;
 
         public RoutingTable()
         {
-            this.routes = new Dictionary<HTTPMethod, Dictionary<string, Response>>()
+            this.routes = new Dictionary<HTTPMethod, Dictionary<string, Func<Request, Response>>>()
             {
                 [HTTPMethod.Get] = new(),
                 [HTTPMethod.Post] = new(),
@@ -24,35 +24,21 @@
             };
         }
 
-        public IRoutingTable Map(string url, HTTPMethod method, Response response)
-        {
-            return method switch
-            {
-                HTTPMethod.Get => this.MapGet(url, response),
-                HTTPMethod.Post => this.MapPost(url, response),
-                _ => throw new InvalidOperationException($"Method '{method}' is not supported."),
-            };
-        }
-
-        public IRoutingTable MapGet(string url, Response response)
+        public IRoutingTable Map(string url, HTTPMethod method, Func<Request, Response> responseFunction)
         {
             Guard.AgaintsNull(url, nameof(url));
-            Guard.AgaintsNull(response, nameof(response));
+            Guard.AgaintsNull(responseFunction, nameof(responseFunction));
 
-            this.routes[HTTPMethod.Get][url] = response;
+            this.routes[method][url] = responseFunction;
 
             return this;
         }
 
-        public IRoutingTable MapPost(string url, Response response)
-        {
-            Guard.AgaintsNull(url, nameof(url));
-            Guard.AgaintsNull(response, nameof(response));
+        public IRoutingTable MapGet(string url, Func<Request, Response> responseFunction)
+            => this.Map(url, HTTPMethod.Get, responseFunction);
 
-            this.routes[HTTPMethod.Post][url] = response;
-
-            return this;
-        }
+        public IRoutingTable MapPost(string url, Func<Request, Response> responseFunction)
+            => this.Map(url, HTTPMethod.Post, responseFunction);
 
         public Response MatchRequest(Request request)
         {
@@ -65,7 +51,7 @@
                 return new NotFoundResponse();
             }
 
-            return this.routes[requestMethod][requestUrl];
+            return this.routes[requestMethod][requestUrl](request);
         }
     }
 }

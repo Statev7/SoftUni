@@ -43,18 +43,18 @@
             await DownloadSitesAsTextFile(FileName, 
                 new string[] { "https://judge.softuni.org/", "https://softuni.org" });
 
-            HTTPServer server = new HTTPServer(routes => routes
-                .MapGet("/", new TextResponse("Hello from my cat web server!"))
-                .MapGet("/HTML", new HtmlResponse(HtmlForm))
-                .MapPost("/HTML", new HtmlResponse("", AddFormDataAction))
-                .MapGet("/Content", new HtmlResponse(DownloadForm))
-                .MapPost("/Content", new TextFileResponse(FileName))
-                .MapGet("/Cookies", new HtmlResponse("", AddCookiesAction))
-                .MapGet("/Session", new TextResponse("", DisplaySessionInfoAction))
-                .MapGet("/Login", new HtmlResponse(LoginForm))
-                .MapPost("/Login", new HtmlResponse("", LoginAction))
-                .MapGet("/Logout", new HtmlResponse("", LogoutAction))
-                .MapGet("/UserProfile", new HtmlResponse("", GetDataAction)));
+            //HTTPServer server = new HTTPServer(routes => routes
+            //    .MapGet("/", new TextResponse("Hello from my cat web server!"))
+            //    .MapGet("/HTML", new HtmlResponse(HtmlForm))
+            //    .MapPost("/HTML", new HtmlResponse("", AddFormDataAction))
+            //    .MapGet("/Content", new HtmlResponse(DownloadForm))
+            //    .MapPost("/Content", new TextFileResponse(FileName))
+            //    .MapGet("/Cookies", new HtmlResponse("", AddCookiesAction))
+            //    .MapGet("/Session", new TextResponse("", DisplaySessionInfoAction))
+            //    .MapGet("/Login", new HtmlResponse(LoginForm))
+            //    .MapPost("/Login", new HtmlResponse("", LoginAction))
+            //    .MapGet("/Logout", new HtmlResponse("", LogoutAction))
+            //    .MapGet("/UserProfile", new HtmlResponse("", GetDataAction)));
             
             await server.Start();
         }

@@ -1,14 +1,16 @@
 ﻿namespace BasicWebServer.Routing.Contracts
 {
+    using System;
+
     using BasicWebServer.HTTP;
     using BasicWebServer.HTTP.Enums;
 
     public interface IRoutingTable
     {
-        IRoutingTable Map(string url, HTTPMethod method, Response response);
+        IRoutingTable Map(string url, HTTPMethod method, Func<Request, Response> responseFunction);
 
-        IRoutingTable MapGet(string url, Response response);
+        IRoutingTable MapGet(string url, Func<Request, Response> responseFunction);
 
-        IRoutingTable MapPost(string url, Response response);
+        IRoutingTable MapPost(string url, Func<Request, Response> responseFunction);
     }
 }

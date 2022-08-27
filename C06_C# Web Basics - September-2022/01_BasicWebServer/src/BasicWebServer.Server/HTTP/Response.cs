@@ -31,8 +31,6 @@
 
         public string Body { get; set; }
 
-        public Action<Request, Response> PreRenderAction { get; set; }
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

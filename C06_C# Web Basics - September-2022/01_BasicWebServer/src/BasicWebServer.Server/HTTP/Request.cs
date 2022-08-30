@@ -1,6 +1,7 @@
 ﻿namespace BasicWebServer.HTTP
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -12,11 +13,11 @@
 
     public class Request
     {
-        private static IDictionary<string, Session> sessions = new Dictionary<string, Session>();
+        private static ConcurrentDictionary<string, Session> sessions = new ConcurrentDictionary<string, Session>();
 
         public Request()
         {
-            this.Form = new Dictionary<string, string>();
+            this.Form = new ConcurrentDictionary<string, string>();
         }
 
         public string Url { get; private set; }

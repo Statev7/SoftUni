@@ -8,22 +8,13 @@
     using System.Threading.Tasks;
     using System.Web;
 
+    using BasicWebServer.Application.Models;
     using BasicWebServer.Controllers;
     using BasicWebServer.HTTP;
     using BasicWebServer.HTTP.Cookies;
 
     public class HomeController : Controller
     {
-        private const string HtmlForm = @"<form action='/HTML' method='Post'>
-            Name: <input type='text' name='Name'/>
-            Age: <input type='number' name ='Age'/>
-            <input type='submit' value ='Save' />
-            </form>";
-
-        private const string DownloadForm = @"<form action='/Content' method='POST'>
-            <input type='submit' value ='Download Sites Content' /> 
-            </form>";
-
         private const string FileName = "content.txt";
 
         public HomeController(Request request)
@@ -35,22 +26,23 @@
 
         public Response Redirect(string location) => base.Redirect(location);
 
-        public Response Html() => this.Html(HtmlForm);
+        public Response Html() => this.View();
 
         public Response HtmlFormPost()
         {
-            string formData = string.Empty;
+            string name = this.Request.Form["Name"];
+            int age = int.Parse(this.Request.Form["Age"]);
 
-            foreach (var (key, value) in this.Request.Form)
+            FormViewModel model = new()
             {
-                formData += $"<h1>{key} - {value}</h1>";
-                formData += Environment.NewLine;
-            }
+                Name = name,
+                Age = age,
+            };
 
-            return this.Html(formData);
+            return this.View(model);
         }
 
-        public Response Content() => this.Html(DownloadForm);
+        public Response Content() => this.View();
 
 
         public Response DownloadContent()

@@ -7,12 +7,6 @@
 
     public class UserController : Controller
     {
-        private const string LoginForm = @"<form action='/Login' method='POST'>
-            Username: <input type='text' name='Username'/>
-            Password: <input type='text' name='Password'/>
-            <input type='submit' value ='Log In' /> 
-            </form>";
-
         private const string Username = "user";
         private const string Password = "user123";
 
@@ -21,7 +15,7 @@
         {
         }
 
-        public Response Login() => this.Html(LoginForm);
+        public Response Login() => this.View();
 
         public Response LogInUser()
         {

@@ -1,5 +1,7 @@
 ﻿namespace BasicWebServer.Controllers
 {
+    using System.Runtime.CompilerServices;
+
     using BasicWebServer.HTTP;
     using BasicWebServer.HTTP.Cookies;
     using BasicWebServer.Responses.ActionResponses;
@@ -40,5 +42,15 @@
         protected Response Unauthorized() => new UnauthorizedResponse();
 
         protected Response NotFound() => new NotFoundResponse();
+
+        protected Response View([CallerMemberName] string viewName = "")
+            => new ViewResponse(viewName, this.GetControllerName());
+
+        protected Response View(object model, [CallerMemberName] string viewName = "")
+            => new ViewResponse(viewName, this.GetControllerName(), model);
+
+        private string GetControllerName()
+            => this.GetType().Name
+                .Replace(nameof(Controller), string.Empty);
     }
 }

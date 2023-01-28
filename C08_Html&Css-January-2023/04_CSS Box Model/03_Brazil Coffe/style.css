@@ -1,0 +1,39 @@
+section {
+    width: 451px;
+    height: 540px;
+    padding: 16px;
+    border: 8px solid #e6e6e6;
+}
+
+h2 {
+    font-family: Merriweather, serif;
+    font-weight: 700;
+    margin: 1.2rem 0;
+    color: rgb(51, 51, 51);
+}
+
+div {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+button {
+    width: 250px;
+    margin: 20px 0px;
+    padding: 8px 16px;
+    font-family: Work Sans, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 4px;
+    background-color: #d5384d;
+    color: #fff;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+p {
+    font-family: Georgia, Cambria, Times New Roman, Times, serif;
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 0;
+}

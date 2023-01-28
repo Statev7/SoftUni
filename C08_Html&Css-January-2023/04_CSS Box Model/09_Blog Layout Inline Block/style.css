@@ -1,0 +1,26 @@
+body {
+    padding: 20px;
+    font-family: Helvetica, sans-serif;
+    background-color: rgb(238, 238, 238);
+    color: rgb(51, 51, 51) ;
+}
+
+article, aside {
+    display: inline-block;
+}
+
+article {
+    width: 55%;
+}
+
+aside {
+    vertical-align:top;
+}
+
+img {
+    width: 500px;
+}
+
+ul {
+    list-style-type: square;
+}

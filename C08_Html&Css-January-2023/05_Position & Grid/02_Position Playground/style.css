@@ -1,0 +1,37 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.viewport:first-child{
+    background-color: cornflowerblue;
+}
+.viewport:nth-child(2){
+    background-color: lightcoral;
+}
+
+.viewport{
+    position: relative;
+    height: 465px;
+}
+
+.card {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img {
+    width: 300px;
+}
+
+.icon {
+    position: absolute;
+    bottom: 10px;
+    right: 6px;
+    color: white;
+}

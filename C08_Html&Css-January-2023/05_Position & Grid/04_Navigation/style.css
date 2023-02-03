@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px
+}
+
+img {
+    border: 2px solid black;
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0, 0, 0, 0.25);
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: Georgia, serif;
+    font-size: 1em;
+}
+
+a {
+    color: rgb(0, 102, 0);
+    text-decoration: none;
+}
+
+/* HEADER */
+
+body > header {
+    border-bottom: 2px solid black;
+    position: relative;
+}
+
+body > header > p {
+    text-transform: uppercase;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+header nav {
+    position: absolute;
+    list-style-type: none;
+    font-size: 0px;
+    right: 0px;
+    bottom: 20px;
+}
+
+header nav ul li {
+    display: inline-block;
+    font-size: 16px;
+}
+
+header nav ul li:not(:first-child){
+    padding-left: 20px;
+}
+
+/* Article */
+
+article {
+    position: relative;
+}
+
+article > section {
+    width: 70%;
+}
+
+.first-image {
+    float: right;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+aside {
+    position: absolute;
+    right: 300px;
+    bottom: 500px;
+}
+
+/* quote */
+
+blockquote {
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+.quote-container {
+    position: relative;
+}
+
+.quote-left-side{
+    width: 50%;
+    padding-right: 2%;
+    border-right: 3px solid gray;
+}
+
+blockquote{
+    width: 45%;
+    position: absolute;
+    right: 0px;
+    top: -20px;
+    color: gray;
+}
+
+blockquote > p {
+    text-align: right;
+}
+
+.second-img {
+    float: left;
+    margin-right: 15px;
+}

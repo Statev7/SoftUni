@@ -1,0 +1,83 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+header {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+header h1 {
+    text-transform: uppercase;
+}
+
+/* Article */
+
+article {
+    width: 70%;
+}
+
+img {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+article section:nth-child(1) img {
+    float: right;
+    margin-left: 10px;
+}
+
+article section:last-child img {
+    float: left;
+    margin-right: 10px;
+}
+
+.quoteContainer {
+    display: flex;
+}
+
+.quoteContainer p:first-child {
+    border-right: 3px solid gray;
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    color: gray;
+}
+
+blockquote .auhor {
+    text-align: right;
+}
+
+/* Aside */
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+aside section {
+    width: 150px;
+}
+
+aside section nav ul {
+    list-style-type: square;
+}
+
+aside section nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+}

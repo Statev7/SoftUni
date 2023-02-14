@@ -1,0 +1,28 @@
+body {
+    padding: 30px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgb(0,0,0);
+}
+
+header h1 {
+    text-transform: uppercase;
+}
+
+header nav ul {
+    display: flex;
+    gap: 12px;
+
+    font-size: 18px;
+    list-style-type: none;
+}
+
+header nav ul a {
+    color: rgb(0, 153, 0);
+    text-decoration: none;
+}
+

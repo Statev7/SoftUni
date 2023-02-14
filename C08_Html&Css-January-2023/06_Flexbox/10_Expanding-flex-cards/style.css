@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    align-items: center;
+
+    height: 100vh;
+    background-color: rgb(238, 238, 238);
+}
+
+img {
+    display: block;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    height: 30%;
+}
+
+img {
+    width: 5%;
+}
+
+.container img:nth-child(2){
+    width: 20%;
+}

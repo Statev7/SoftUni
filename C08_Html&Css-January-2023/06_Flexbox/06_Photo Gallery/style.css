@@ -1,0 +1,18 @@
+body, ul, li {
+    display: flex;
+}
+
+ul {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    list-style-type: none;
+}
+
+li {
+    justify-content: center;
+    border: 10px solid black;
+    padding: 20px;
+    width: 25%;
+}

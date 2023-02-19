@@ -1,0 +1,90 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F6E0B5;
+}
+
+/* Global */
+
+h2 {
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 24px;
+    padding: 32px 32px;
+}
+
+/* Cards */
+
+.container .cards {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+    row-gap: 18px;
+}
+
+.container .cards .card {
+    flex-basis: 48%;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #66545E;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 54px 55px, 
+    rgba(0, 0, 0, 0.15) 0px -12px 30px, 
+    rgba(0, 0, 0, 0.15) 0px 4px 6px, 
+    rgba(0, 0, 0, 0.15) 0px 12px 13px;
+}
+
+.container .cards .image {
+    height: 90%;
+}
+
+.container .cards .image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.container .cards .card .heading {
+    color: #fff;
+    padding: 6px;
+}
+
+/* Navigation-Box */
+
+.container .navigation-box {
+    color: #5A4A59;
+}
+
+.container .navigation-box h2 {
+    font-size: 24px;
+}
+
+.container .navigation-box .navigation {
+    margin-top: 24px;
+}
+
+.container .navigation-box .navigation ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.container .navigation-box .navigation li {
+    font-size: 28px;
+}
+
+.container .navigation-box .navigation a {
+    text-decoration: none;
+    color: #5A4A59;
+    font-weight: bold;
+}
+
+.container .navigation-box .navigation i {
+    padding-right: 6px;
+}
+

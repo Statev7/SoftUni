@@ -1,0 +1,191 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Global */
+
+.btn-dark {
+    padding: 4px 18px;
+
+    background-color: #370511;
+    border: 1px solid #370511;
+    border-radius: 25px;
+    color: white;
+
+    cursor: pointer;
+}
+
+.btn-white {
+    padding: 12px 24px;
+
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 25px;
+    color: black;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* Hero */
+
+#hero {
+    background-image: url(../images/landing-photo.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    padding: 24px 300px;
+}
+
+#hero header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 128px;
+}
+
+#hero header h1 {
+    font-weight: 900;
+    font-size: 32px;
+}
+
+#hero header .navigation {
+    margin-left: auto;
+}
+
+#hero header ul {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+#hero header ul a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+#hero .content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 120px;
+}
+
+#hero .content .title {
+    font-size: 50px;
+}
+
+#hero .content .subtitle {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#hero .content .btn-dark {
+    width: 30%;
+}
+
+/* Places */
+
+#places {
+    padding: 48px 300px;
+    color: gray;
+}
+
+#places .titles {
+    text-align: center;
+    color: black;
+    margin-bottom: 24px;
+}
+
+#places .titles .title {
+    font-size: 32px;
+}
+
+#places .titles .subtitle {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#places .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    margin-bottom: 48px;
+}
+
+#places .cards .card {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#places .cards .card .image-box {
+    width: 100%;
+    height: 350px;
+}
+
+#places .cards .card .image-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#places .cards .card .content {
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#places .cards .card .content .location-title {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#places .cards .card .content .desc {
+    text-align: center;
+}
+
+/* Footer */
+
+#footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 48px 300px;
+    color: white;
+    background-color: black;
+}
+
+#footer a{
+    text-decoration: none;
+    color: white;
+}
+
+#footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#footer .social-media {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#footer .social-media ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#footer .social-media ul i {
+    font-size: 18px;
+}

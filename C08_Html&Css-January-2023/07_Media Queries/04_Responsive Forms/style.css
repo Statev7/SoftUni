@@ -1,0 +1,83 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+body {
+    background-color: gainsboro;
+    padding: 40px;
+}
+
+fieldset, legend {
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+fieldset {
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: #F7F7F7;
+}
+
+fieldset legend {
+    position: absolute;
+    left: -1px;
+    top: -20px;
+    padding: 10px;
+    background-color: #F7F7F7;
+    width: 30%;
+}
+
+fieldset p {
+    display: flex;
+    font-weight: bold;
+    gap: 10px;
+}
+
+fieldset input {
+    padding: 4px;
+    border-radius: 3px;
+    border: 1px solid gray;
+    width: 100%;
+}
+
+fieldset .icon {
+    display: inline-block;
+    position: absolute;
+    left: 110px;
+}
+
+.fa-user {
+    top: 45px;
+}
+
+.fa-key {
+    top: 85px;
+}
+
+fieldset .btn {
+    padding: 5px 12px;
+    background-color: #2C2C2C;
+    color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    fieldset p {
+        flex-wrap: wrap;
+    }
+
+    fieldset .icon{
+        left: 30px;
+    }
+
+    .fa-user {
+        top: 72px;
+    }
+    
+    .fa-key {
+        top: 142px;
+    }
+}

@@ -1,0 +1,25 @@
+body {
+    padding: 20px;
+}
+
+table {
+    table-layout: fixed ;
+    width: 100% ;
+    border-collapse: collapse ;
+    border: 1px gray solid ;
+}
+
+table td,th {
+    width: 50% ;
+    border: 1px gray solid ;
+    padding: 10px ;
+}
+
+table th {
+    background-color: #333333;
+    color: white;
+}
+
+table tbody tr:nth-child(odd){
+    background-color: #F1F1F1;
+}

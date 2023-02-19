@@ -1,0 +1,60 @@
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+.card {
+    background-color: rgb(255, 255, 255);
+    max-width: 350px;
+    height: 400px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    
+}
+
+section div:last-child{
+    padding: 5px 20px 0px 20px;
+}
+
+h3 {
+    font-family: Gergia, serif;
+    font-size: 1em;
+}
+
+.button {
+    padding: 8px 14px;
+    background-color: rgb(0, 153, 0);
+    border-radius: 2px;
+    border: 0px;
+    float: right;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 400px) {
+    
+.card {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+section div:last-child{
+    padding: 5px 15px 0px 15px;
+    font-size: 18px;
+}
+
+.button {
+    padding: 12px 18px;
+}
+
+}

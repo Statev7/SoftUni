@@ -1,0 +1,102 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+}
+
+.page {
+    padding: 20px 150px;
+}
+
+header {
+    border-bottom: 2px solid black;
+}
+
+header h1 {
+    text-transform: uppercase;
+}
+
+/* Article */
+
+
+img {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.first-image {
+    float: right;
+    margin-left: 10px;
+}
+
+.second-image {
+    float: left;
+    margin-right: 10px;
+}
+
+.quoteContainer {
+    display: flex;
+}
+
+
+blockquote {
+    font-family: Georgia, serif;
+    color: gray;
+    border-left: 3px solid gray;
+    padding-left: 12px;
+}
+
+blockquote .auhor {
+    text-align: right;
+}
+
+@media (max-width: 1800px) {
+    html {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 1300px) {
+    html {
+        font-size: 21px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    html {
+        font-size: 18px;
+    }
+    .page {
+        padding: 20px 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    html {
+        font-size: 14px;
+    }
+
+    article section:nth-child(1) img {
+        float: none;
+        margin-left: 0px;
+    }
+    
+    article section:last-child img {
+        float: none;
+        margin-right: 0ox;
+    }
+
+    .quoteContainer {
+        flex-wrap: wrap;
+    }
+}

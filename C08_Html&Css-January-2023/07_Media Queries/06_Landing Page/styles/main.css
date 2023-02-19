@@ -1,0 +1,275 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Global */
+
+.btn {
+    padding: 5px 15px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 5px 256px;
+}
+
+header .title-container {
+    line-height: 1.2;
+}
+
+header .title {
+    color: #80007C;
+    font-size: 36px;
+}
+
+header .sub-title {
+    text-transform: uppercase;
+    color: #3F424D;
+    letter-spacing: -1px;
+    font-size: 14px;
+}
+
+header .navigation {
+    margin-left: auto;
+}
+
+header .navigation ul {
+    display: flex;
+    gap: 30px;
+}
+
+header .navigation ul a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+/* Hero */
+
+#hero {
+    display: flex;
+    max-width: 1700px;
+    padding: 0px 300px;
+    margin: 60px auto;
+    align-items: center;
+}
+
+#hero .content {
+    max-width: 700px;
+    line-height: 1.2;
+}
+
+.content-title, .content-desc {
+    margin-bottom: 16px;
+}
+
+.content-title {
+    font-size: 32px;
+}
+
+.content-desc {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#hero img {
+    margin: 0 auto;
+}
+
+/* Out Team and estimonials */
+
+#out-team, #testimonials {
+    padding: 0px 300px;
+    margin: 60px 0px;
+}
+
+#testimonials .cards .card .desc {
+    text-align: center;
+}
+
+/* Cards */
+
+.heading {
+    text-align: center;
+}
+
+.heading h2 {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid black;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.cards img {
+    object-fit: cover;
+    width: 128px;
+    height: 128px;
+    border-radius: 100%;
+}
+
+.cards .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.cards .card .personal-information {
+    text-align: center;
+}
+
+.cards .card .personal-information .name {
+    font-weight: bold;
+}
+
+.cards .card .desc {
+    font-style: italic;
+}
+
+/* Sign-up */
+
+#sign-up {
+    background-color: #68347A;
+    color: white;
+    padding: 35px 50px;
+    text-align: center;
+}
+
+#sign-up h3 {
+    font-size: 32px;
+}
+
+.subscribe-box {
+    margin-top: 20px;
+}
+
+/* Footer */
+
+#footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 15px 300px;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid black;
+}
+
+#footer h3,h4
+{
+    margin-bottom: 10px;
+}
+
+#footer .sitemap nav ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+}
+
+#footer .sitemap nav ul li:nth-child(2) {
+    order: 1;
+}
+
+
+#footer .sitemap nav ul a {
+    text-decoration: none;
+    color: #3F424D;
+}
+
+@media (max-width: 1560px) {
+    #footer .sitemap nav ul li:nth-child(2) {
+        order: -1;
+    }
+}
+
+@media (max-width: 1350px) {
+    header {
+        padding: 5px 128px;
+    }
+
+    #hero {
+        padding: 0px 150px;
+    }
+
+    #out-team, #testimonials {
+        padding: 0px 150px;
+    }
+
+    #footer {
+        padding: 15px 100px;
+    }
+}
+
+@media (max-width: 1024px) {
+    header {
+        padding: 5px 64px;
+    }
+
+    #hero {
+        padding: 0px 75px;
+    }
+
+    #out-team, #testimonials {
+        padding: 0px 75px;
+    }
+
+    #footer {
+        padding: 15px 75px;
+    }
+}
+
+@media (max-width: 850px) {
+    header {
+        padding: 5px 64px;
+    }
+
+    header .navigation {
+        display: none;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+    }
+
+    .card {
+        max-width: 300px;
+    }
+
+    #out-team, #testimonials {
+        padding: 0px 20px;
+    }
+
+    
+    #footer {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 5px 24px;
+    }
+
+    #hero {
+        padding: 0px 35px;
+    }
+}

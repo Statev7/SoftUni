@@ -13,7 +13,7 @@ function solve() {
     const pointsElement = document.getElementById('points');
     const assigneeElement = document.getElementById('assignee');
 
-    const inputs = [titleElement, descriptionElement, pointsElement, assigneeElement];
+    const inputs = [titleElement, selectElement, descriptionElement, pointsElement, assigneeElement];
     let idCounter = 1;
     let totalPoints = 0;
 
@@ -78,7 +78,6 @@ function solve() {
         idCounter++;
         updatePoints(Number(pointsElement.value), 'increase');
         inputs.forEach(x => x.value = '');
-        selectElement.value = '';
     }
 
     function loadInformationToForm(e){
@@ -99,7 +98,6 @@ function solve() {
         assigneeElement.value = assignee;
 
         inputs.forEach(x => x.disabled = true);
-        selectElement.disabled = true;
 
         createTaskBtn.disabled = true;
         deleteTaskBtn.disabled = false;
@@ -111,11 +109,9 @@ function solve() {
         task.remove();
 
         updatePoints(Number(pointsElement.value), '');
+        
         inputs.forEach(x => x.value = '');
-        selectElement.value = '';
-
         inputs.forEach(x => x.disabled = false);
-        selectElement.disabled = false;
 
         createTaskBtn.disabled = false;
         deleteTaskBtn.disabled = true;
